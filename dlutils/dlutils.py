@@ -17,6 +17,14 @@ import keras
 from keras import backend as K
 from keras.utils.np_utils import to_categorical
 
+from keras.models import Sequential
+from keras.layers import Input
+
+from keras.layers import Dense, Dropout, Activation
+from keras.layers import Conv1D, Conv2D
+from keras.layers import Dense, Embedding, Flatten
+from keras.layers import Conv1D, Conv2D
+
 
 # shuffles
 def shuffle(p):
