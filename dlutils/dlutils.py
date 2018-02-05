@@ -25,6 +25,7 @@ from keras.layers import Conv1D, Conv2D
 from keras.layers import Dense, Embedding, Flatten
 from keras.layers import Conv1D, Conv2D
 
+from keras.utils.data_utils import get_file
 
 # shuffles
 def shuffle(p):
@@ -50,9 +51,21 @@ def load_array(fname):
     """Use bcolz to load numpy array"""    
     return bcolz.open(fname)[:]
 
+def get_file(fname, origin,**kwargs):
+    """Download a file, if not already available.
+    origin can be url, or full path to file.
+    Specifying full path in fname will save to that location; 
+    otherwise to cache location.
+    Uses Keras get_file method.
+
+    Return path to the downloaded file
+    """
+    return keras.utils.data_utils.get_file(fname=fname,origin=origin, **kwargs)
+    
+
 
 # data transformations
-def to_onehot(arr):
+def onehot(arr):
     """Turn array of integers into matrix of binary [1,0] encodeed values.
     """
     return to_categorical(arr)
@@ -66,4 +79,23 @@ array shape.
     Use channel_index for position of the new dimension.
     """
     return np.expand_dims(array,channel_index)
+
+def stack_columns(arrays):
+    """Append columns together.
+    arrays is a list of np.arrays to stack
+    """
+    return np.stack(arrays,axis=-1)
+
+def stack_rows(arrays):
+    """Append rows together.
+    arrays is a list of np.arrays to stack
+    """
+    return np.stack(arrays,axis=0)
+
+def concatenate(arrays,axis=0):
+    return np.concatenate(arrays,axis=axis)
+
+
+
+
 
