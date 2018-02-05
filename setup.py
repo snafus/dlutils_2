@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='dlutils',
-      version='0.1',
+      version='0.1.1',
       description='simple set of helpers for DL ',
       url='https://github.com/snafus/dlutils',
       #author='',
